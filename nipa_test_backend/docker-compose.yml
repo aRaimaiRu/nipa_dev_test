@@ -1,20 +1,7 @@
 version: '1'
 
 services:
-  # mysql:
-  #   # image: mariadb:10.3
-  #   # image: mariadb:11.0.1-rc-jammy
-  #   image: mariadb:10.6.3-focal
-  #   env_file:
-  #     - .env
-  #   ports:
-  #     - 3306:3306
-  #   expose:
-  #     - 3306
-  #   networks:
-  #     - backend-network
-  #   # volumes:
-  #   #   - ./data:/var/lib/mysql
+
   postgres:
     image: postgres:14.1-alpine
     restart: always
@@ -30,8 +17,12 @@ services:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
       - backend-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
   backend:
-
     build:
         context: .
         dockerfile: ./dockerfile
@@ -41,7 +32,8 @@ services:
     ports:
       - 3002:3002
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy
     links:
       - postgres
     networks:
