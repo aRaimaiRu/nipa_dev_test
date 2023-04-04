@@ -4,32 +4,35 @@ services:
   postgres:
     image: postgres:14.1-alpine
     restart: always
+    user: postgres
     env_file:
       - ./nipa_test_backend/.env
-    # environment:
-    #   - POSTGRES_USER=root
-    #   - POSTGRES_PASSWORD=root
-    #   - POSTGRES_DB=root
     ports:
       - 5432:5432
     volumes:
       - ./nipa_test_backend/init.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
       - backend-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   backend:
     build:
-        context: .
-        dockerfile: ./nipa_test_backend/dockerfile
-    command: node .
+        context: ./nipa_test_backend
+        dockerfile: ./dockerfile
+    restart: on-failure
     env_file:
       - ./nipa_test_backend/.env
     ports:
       - 3002:3002
     depends_on:
-      - postgres
-    links:
-      - postgres
+      postgres:
+        condition: service_healthy
+    # links:
+    #   - postgres
     networks:
       - backend-network
     volumes:
@@ -47,8 +50,6 @@ services:
       - backend
     links:
       - backend
-    # volumes:
-    #   - ./nipa_test_front:/app
 
 networks:
     backend-network:
