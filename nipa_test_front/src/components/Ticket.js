@@ -1,39 +1,3 @@
-// import { useState } from "react";
-// const Ticket = ({ ticket, onUpdateTicket }) => {
-//     const [isEditing, setIsEditing] = useState(false);
-//     const [title, setTitle] = useState(ticket.title);
-//     const [description, setDescription] = useState(ticket.description);
-//     const [contactInformation, setContactInformation] = useState(ticket.contact_information);
-  
-//     const handleSubmit = e => {
-//       e.preventDefault();
-//       onUpdateTicket(ticket.id, title, description, contactInformation);
-//       setIsEditing(false);
-//     };
-  
-//     return (
-//       <div className="ticket">
-//         {isEditing ? (
-//           <form onSubmit={handleSubmit}>
-//             <input type="text" value={title} onChange={e => setTitle(e.target.value)} />
-//             <textarea value={description} onChange={e => setDescription(e.target.value)} />
-//             <input type="text" value={contactInformation} onChange={e => setContactInformation(e.target.value)} />
-//             <button type="submit">Save</button>
-//             <button type="button" onClick={() => setIsEditing(false)}>Cancel</button>
-//           </form>
-//         ) : (
-//           <>
-//             <h3>{ticket.title}</h3>
-//             <p>{ticket.description}</p>
-//             <p>Contact information: {ticket.contact_information}</p>
-//             <button onClick={() => setIsEditing(true)}>Edit</button>
-//           </>
-//         )}
-//       </div>
-//     );
-//   };
-
-// export default Ticket;
 import { useState } from "react";
 
 const Ticket = ({ ticket, onUpdateTicket }) => {

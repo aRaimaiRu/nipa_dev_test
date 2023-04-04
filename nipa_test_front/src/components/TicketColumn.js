@@ -29,7 +29,7 @@ const TicketColumn = ({ status, tickets, updateTicketStatus, updateTicket, creat
   return (
     <div className="ticket-column">
       <h2>{status}</h2>
-      <button onClick={handleShowForm}>Create Ticket</button>
+      {createTicket && <button onClick={handleShowForm}>Create Ticket</button>}
       {showForm && <TicketForm onSubmit={handleCreateTicket} onCancel={handleHideForm} />}
       {tickets.map(ticket => (
         <Ticket
