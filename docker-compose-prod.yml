@@ -15,8 +15,8 @@ services:
 
   backend:
     build:
-        context: .
-        dockerfile: ./nipa_test_backend/dockerfile
+        context: ./nipa_test_backend
+        dockerfile: ./dockerfile
     command: npm run start
     env_file:
       - ./nipa_test_backend/.env
@@ -28,8 +28,8 @@ services:
       - postgres
     networks:
       - backend-network
-    volumes:
-      - ./nipa_test_backend:/app
+    # volumes:
+    #   - ./nipa_test_backend:/app
 
   frontend:
     build:
