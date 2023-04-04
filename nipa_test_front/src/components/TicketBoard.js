@@ -46,21 +46,28 @@ const TicketBoard = () => {
         tickets={tickets.filter(ticket => ticket.status_id === 1)}
         updateTicket={updateTicket}
         createTicket={createTicket}
+        order={1}
       />
       <TicketColumn
         status="Accepted"
         tickets={tickets.filter(ticket => ticket.status_id === 2)}
         updateTicket={updateTicket}
+        order={2}
+
       />
       <TicketColumn
         status="Resolved"
         tickets={tickets.filter(ticket => ticket.status_id === 3)}
         updateTicket={updateTicket}
+        order={3}
+
       />
       <TicketColumn
         status="Rejected"
         tickets={tickets.filter(ticket => ticket.status_id === 4)}
         updateTicket={updateTicket}
+        order={4}
+
       />
     </div>
   );
