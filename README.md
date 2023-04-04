@@ -21,7 +21,7 @@ This repository contains the backend application for NIPA's technical test. The 
   docker-compose -f docker-compose-prod.yml up
   ```
 
-  - In development mode: (npm install dependencies in `nipa_test_backend` and `nipa_test_front` directories)
+  - In development mode: (need to npm install dependencies in `nipa_test_backend` and `nipa_test_front` directories)
 
   ```
   docker-compose -f docker-compose.yml up
