@@ -1,8 +1,8 @@
 FROM node:alpine
 WORKDIR /app
-# COPY . .
+COPY . .
 
-RUN ls
+RUN npm install
 # RUN npm install --production
 
 # EXPOSE 3002
