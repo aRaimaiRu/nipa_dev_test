@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest --detectOpenHandles"
+    "test": "jest --detectOpenHandles",
+    "start": "nodemon index.js"
   },
   "author": "",
   "license": "ISC",
@@ -15,6 +16,7 @@
     "mariadb": "^2.5.4",
     "mysql": "^2.18.1",
     "mysql2": "^2.3.0",
+    "nodemon": "^2.0.22",
     "pg": "^8.10.0",
     "sequelize": "^6.30.0",
     "swagger-ui-express": "^4.6.2",

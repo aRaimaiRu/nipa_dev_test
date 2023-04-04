@@ -1,0 +1,49 @@
+version: '1'
+
+services:
+  postgres:
+    image: postgres:14.1-alpine
+    restart: always
+    env_file:
+      - ./nipa_test_backend/.env
+    ports:
+      - 5432:5432
+    volumes:
+      - ./nipa_test_backend/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - backend-network
+
+  backend:
+    build:
+        context: .
+        dockerfile: ./nipa_test_backend/dockerfile
+    command: npm run start
+    env_file:
+      - ./nipa_test_backend/.env
+    ports:
+      - 3002:3002
+    depends_on:
+      - postgres
+    links:
+      - postgres
+    networks:
+      - backend-network
+    volumes:
+      - ./nipa_test_backend:/app
+
+  frontend:
+    build:
+      context: ./nipa_test_front
+      dockerfile: ./dockerfile.prod
+    env_file:
+      - ./nipa_test_front/.env
+    ports:
+      - 3000:3000
+    depends_on:
+      - backend
+    links:
+      - backend
+
+networks:
+    backend-network:
+        driver: bridge
