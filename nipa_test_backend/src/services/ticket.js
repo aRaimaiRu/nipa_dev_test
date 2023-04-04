@@ -7,15 +7,6 @@ module.exports = {
   };
 async function create(params) {
   let ticket = await db.Ticket.create({...params, status_id:1})
-  //   db.Ticket.create({
-  //   title: 'Example Ticket',
-  //   contact_information: 'John Doe',
-  //   // created: new Date(),
-  //   // updated: new Date(),
-  //   status_id: 1,
-  // })
-    // .then((ticket) => console.log(ticket.toJSON()))
-    // .catch((error) => console.error(error));
     return ticket.toJSON()
 }
 

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import TicketColumn from './TicketColumn';
 import axios from 'axios';
-const HOSTAPI = `${process.env.HOSTAPI || ''}`;
+const HOSTAPI = `${process.env.REACT_APP_HOSTAPI || ''}`;
 
 const TicketBoard = () => {
   const [tickets, setTickets] = useState([]);
@@ -14,7 +14,6 @@ const TicketBoard = () => {
 
 
   const updateTicket = (ticketId, title, description, contactInformation, status_id) => {
-    console.log("update ticket", typeof(status_id))
     axios.put(`http://${HOSTAPI || 'localhost:3002'}/api/tickets/${ticketId}`, { title, description, contact_information: contactInformation, status_id: parseInt(status_id) })
       .then(response => {
         // Update ticket in state

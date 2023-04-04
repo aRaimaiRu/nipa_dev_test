@@ -1,20 +1,6 @@
 version: '1'
 
 services:
-  # mysql:
-  #   # image: mariadb:10.3
-  #   # image: mariadb:11.0.1-rc-jammy
-  #   image: mariadb:10.6.3-focal
-  #   env_file:
-  #     - .env
-  #   ports:
-  #     - 3306:3306
-  #   expose:
-  #     - 3306
-  #   networks:
-  #     - backend-network
-  #   # volumes:
-  #   #   - ./data:/var/lib/mysql
   postgres:
     image: postgres:14.1-alpine
     restart: always
