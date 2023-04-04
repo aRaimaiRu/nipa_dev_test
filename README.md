@@ -6,7 +6,8 @@ This repository contains the backend application for NIPA's technical test. The 
 
 1. Clone the repository by running the following command in your terminal:
   ```
-  git clone https://github.com/yourusername/nipa_test_backend.git
+  git clone https://github.com/aRaimaiRu/nipa_dev_test.git
+  cd nipa_dev_test
   ```
 2. In the `nipa_test_backend` and `nipa_test_front` directories, create a `.env` file by copying the example file with the following command:
   ```
