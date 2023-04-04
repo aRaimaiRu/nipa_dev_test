@@ -41,7 +41,6 @@ const TicketBoard = () => {
 
   return (
     <div className="ticket-board">
-      {console.log("tickets", tickets)}
       <TicketColumn
         status="Pending"
         tickets={tickets.filter(ticket => ticket.status_id === 1)}
