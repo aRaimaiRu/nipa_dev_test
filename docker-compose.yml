@@ -11,7 +11,7 @@ services:
     #   - POSTGRES_PASSWORD=root
     #   - POSTGRES_DB=root
     ports:
-      - "5432:5432"
+      - 5432:5432
     volumes:
       - ./nipa_test_backend/init.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
