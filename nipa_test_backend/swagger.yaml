@@ -1,0 +1,177 @@
+openapi: 3.0.0
+info:
+  title: My API
+  version: 1.0.0
+servers:
+  - url: http://localhost:3002
+paths:
+  /api/tickets:
+    get:
+      summary: Get all tickets
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Successful GetTickets
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                        title:
+                          type: string
+                          example: title
+                        contact_information:
+                          type: string
+                          example: contact_information
+                        description:
+                          type: string
+                          example: description
+                        status_id:
+                          type: integer
+                          example: 1
+                        createdAt:
+                          type: string
+                          format: date-time
+                          example: "2023-04-04T13:39:25.912Z"
+                        updatedAt:
+                          type: string
+                          format: date-time
+                          example: "2023-04-04T13:39:25.912Z"
+    post:
+      summary: Create a new ticket
+      requestBody:
+        description: Ticket object to be created
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  example: 'Title'
+                description:
+                  type: string
+                  example: 'Description'
+                contact_information:
+                  type: string
+                  example: 'Contact Information'
+              required:
+                - title
+                - description
+                - contact_information
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Successful CreateTickets
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 2
+                      title:
+                        type: string
+                        example: Title
+                      description:
+                        type: string
+                        example: Description
+                      contact_information:
+                        type: string
+                        example: Contact Information: Contact Information
+                      status_id:
+                        type: integer
+                        example: 1
+                      createdAt:
+                        type: string
+                        format: date-time
+                        example: '2023-04-04T13:44:54.342Z'
+                      updatedAt:
+                        type: string
+                        format: date-time
+                        example: '2023-04-04T13:44:54.342Z'
+  /api/tickets/{id}:
+    put:
+      summary: Update a ticket
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  example: 'Title'
+                description:
+                  type: string
+                  example: 'Description'
+                contact_information:
+                  type: string
+                  example: 'Contact Information'
+                status_id:
+                  type: integer
+                  example: 1
+              required:
+                - title
+                - description
+                - contact_information
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Successful UpdateTickets
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 2
+                      title:
+                        type: string
+                        example: Title
+                      description:
+                        type: string
+                        example: Description
+                      contact_information:
+                        type: string
+                        example: Contact Information: Contact Information
+                      status_id:
+                        type: integer
+                        example: 1
+                      createdAt:
+                        type: string
+                        format: date-time
+                        example: '2023-04-04T13:44:54.342Z'
+                      updatedAt:
+                        type: string
+                        format: date-time
+                        example: '2023-04-04T13:44:54.342Z'
