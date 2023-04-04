@@ -1,0 +1,54 @@
+version: '1'
+
+services:
+  # mysql:
+  #   # image: mariadb:10.3
+  #   # image: mariadb:11.0.1-rc-jammy
+  #   image: mariadb:10.6.3-focal
+  #   env_file:
+  #     - .env
+  #   ports:
+  #     - 3306:3306
+  #   expose:
+  #     - 3306
+  #   networks:
+  #     - backend-network
+  #   # volumes:
+  #   #   - ./data:/var/lib/mysql
+  postgres:
+    image: postgres:14.1-alpine
+    restart: always
+    env_file:
+      - .env
+    # environment:
+    #   - POSTGRES_USER=root
+    #   - POSTGRES_PASSWORD=root
+    #   - POSTGRES_DB=root
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - backend-network
+  backend:
+
+    build:
+        context: .
+        dockerfile: ./dockerfile
+    command: node .
+    env_file:
+      - .env
+    ports:
+      - 3002:3002
+    depends_on:
+      - postgres
+    links:
+      - postgres
+    networks:
+      - backend-network
+    volumes:
+      - .:/app
+
+networks:
+    backend-network:
+        driver: bridge
