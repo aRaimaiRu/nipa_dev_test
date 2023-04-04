@@ -36,6 +36,7 @@ This repository contains the backend application for NIPA's technical test. The 
 To run the unit tests for the backend application, Navigate to the nipa_test_backend directory:
   ```
   cd nipa_test_backend
+  npm install
   npm run test
   ```
 
