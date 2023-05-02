@@ -7,4 +7,5 @@ RUN npm install
 
 # EXPOSE 3002
 
-CMD ["node", "."]
+# CMD ["node", "."]
+CMD ["npm", "run", "start"]
